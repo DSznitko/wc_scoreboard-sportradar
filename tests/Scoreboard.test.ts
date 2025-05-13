@@ -15,4 +15,10 @@ describe("ScoreBoard", () => {
     expect(scoreboard.matches[0].homeScore).toBe(0);
     expect(scoreboard.matches[0].awayScore).toBe(0);
   });
+
+  //1st edge case for startMatch
+  it("should not allow starting a match with empty team names", () => {
+    expect(() => scoreboard.startMatch("", "Canada", 0, 0)).toThrow();
+    expect(() => scoreboard.startMatch("Mexico", "", 0, 0)).toThrow();
+  });
 });
