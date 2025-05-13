@@ -12,6 +12,8 @@ export class ScoreBoard {
     homeScore: number,
     awayScore: number
   ): void {
+    if (!homeTeam || !awayTeam)
+      throw new Error("each Team can't be an empty string");
     this.matches.push({
       homeTeam,
       awayTeam,
