@@ -1,4 +1,4 @@
-import { ScoreBoard } from "../src/ScoreBoard";
+import { ScoreBoard } from "../src/Scoreboard";
 
 describe("ScoreBoard", () => {
   let scoreboard: ScoreBoard;
