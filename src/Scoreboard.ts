@@ -14,6 +14,8 @@ export class ScoreBoard {
   ): void {
     if (!homeTeam || !awayTeam)
       throw new Error("each Team can't be an empty string");
+
+    if (homeTeam === awayTeam) throw new Error("Teams must be different");
     this.matches.push({
       homeTeam,
       awayTeam,
