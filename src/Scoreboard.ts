@@ -41,6 +41,7 @@ export class ScoreBoard {
     const matchIndexToRemove = this.matches.findIndex(
       (match) => match.homeTeam === homeTeam && match.awayTeam === awayTeam
     );
+    if (matchIndexToRemove === -1) throw new Error("Match not found.");
     this.matches.splice(matchIndexToRemove, 1);
   }
 }
