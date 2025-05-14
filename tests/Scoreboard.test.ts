@@ -7,6 +7,7 @@ describe("ScoreBoard", () => {
     scoreboard = new ScoreBoard();
   });
 
+  // Start match test \\
   it("should start a new match with initial score 0-0", () => {
     scoreboard.startMatch("Mexico", "Canada");
 
@@ -16,6 +17,7 @@ describe("ScoreBoard", () => {
     expect(scoreboard.matches[0].awayScore).toBe(0);
   });
 
+  // Update match score test \\
   it("should update the score of a match", () => {
     scoreboard.startMatch("Mexico", "Canada");
     scoreboard.updateScore("Mexico", "Canada", 2, 1);
@@ -24,6 +26,7 @@ describe("ScoreBoard", () => {
     expect(scoreboard.matches[0].awayScore).toBe(1);
   });
 
+  // Finish match and remove it from scoreboard array test \\
   it("should finish the match and remove it from scoreboard", () => {
     scoreboard.startMatch("Mexico", "Canada");
 
@@ -32,6 +35,7 @@ describe("ScoreBoard", () => {
     expect(scoreboard.matches).toHaveLength(0);
   });
 
+  // Summary of all matches and sort them in proper way test \\
   it("should return summary ordered by total score", () => {
     scoreboard.startMatch("Mexico", "Canada");
     scoreboard.updateScore("Mexico", "Canada", 0, 5);
