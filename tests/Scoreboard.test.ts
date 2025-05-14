@@ -23,4 +23,12 @@ describe("ScoreBoard", () => {
     expect(scoreboard.matches[0].homeScore).toBe(2);
     expect(scoreboard.matches[0].awayScore).toBe(1);
   });
+
+  it("should finish the match and remove it from scoreboard", () => {
+    scoreboard.startMatch("Mexico", "Canada");
+
+    scoreboard.finishMatch("Mexico", "Canada");
+
+    expect(scoreboard.matches).toHaveLength(0);
+  });
 });
