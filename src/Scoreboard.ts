@@ -4,7 +4,10 @@ export class ScoreBoard {
     awayTeam: string;
     homeScore: number;
     awayScore: number;
+    matchStartTime: number;
   }[] = [];
+
+  startMatchCounter = 0;
 
   startMatch(homeTeam: string, awayTeam: string): void {
     if (!homeTeam || !awayTeam)
@@ -16,6 +19,7 @@ export class ScoreBoard {
       awayTeam,
       homeScore: 0,
       awayScore: 0,
+      matchStartTime: this.startMatchCounter++,
     });
   }
 
@@ -50,7 +54,8 @@ export class ScoreBoard {
       const totalA = a.homeScore + a.awayScore;
       const totalB = b.homeScore + b.awayScore;
 
-      return totalB - totalA;
+      if (totalA !== totalB) return totalB - totalA;
+      return b.matchStartTime - a.matchStartTime;
     });
   }
 }

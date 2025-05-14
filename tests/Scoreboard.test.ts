@@ -34,21 +34,31 @@ describe("ScoreBoard", () => {
 
   it("should return summary ordered by total score", () => {
     scoreboard.startMatch("Mexico", "Canada");
-    scoreboard.updateScore("Mexico", "Canada", 2, 3);
+    scoreboard.updateScore("Mexico", "Canada", 0, 5);
 
     scoreboard.startMatch("Spain", "Brazil");
-    scoreboard.updateScore("Spain", "Brazil", 3, 2);
+    scoreboard.updateScore("Spain", "Brazil", 10, 2);
 
     scoreboard.startMatch("Germany", "France");
-    scoreboard.updateScore("Germany", "France", 1, 1);
+    scoreboard.updateScore("Germany", "France", 2, 2);
+
+    scoreboard.startMatch("Uruguay", "Italy");
+    scoreboard.updateScore("Uruguay", "Italy", 6, 6);
+
+    scoreboard.startMatch("Argentina", "Australia");
+    scoreboard.updateScore("Argentina", "Australia", 3, 1);
 
     const summary = scoreboard.getSummary();
-
-    expect(summary[0].homeTeam).toBe("Spain");
-    expect(summary[0].awayTeam).toBe("Brazil");
-    expect(summary[1].homeTeam).toBe("Mexico");
-    expect(summary[1].awayTeam).toBe("Canada");
-    expect(summary[2].homeTeam).toBe("Germany");
-    expect(summary[2].awayTeam).toBe("France");
+    console.log(summary);
+    expect(summary[0].homeTeam).toBe("Uruguay");
+    expect(summary[0].awayTeam).toBe("Italy");
+    expect(summary[1].homeTeam).toBe("Spain");
+    expect(summary[1].awayTeam).toBe("Brazil");
+    expect(summary[2].homeTeam).toBe("Mexico");
+    expect(summary[2].awayTeam).toBe("Canada");
+    expect(summary[3].homeTeam).toBe("Argentina");
+    expect(summary[3].awayTeam).toBe("Australia");
+    expect(summary[4].homeTeam).toBe("Germany");
+    expect(summary[4].awayTeam).toBe("France");
   });
 });
