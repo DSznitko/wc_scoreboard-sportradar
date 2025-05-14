@@ -34,7 +34,7 @@ describe("ScoreBoard", () => {
 
   it("should return summary ordered by total score", () => {
     scoreboard.startMatch("Mexico", "Canada");
-    scoreboard.updateScore("Mexico", "Canada", 2, 1);
+    scoreboard.updateScore("Mexico", "Canada", 2, 3);
 
     scoreboard.startMatch("Spain", "Brazil");
     scoreboard.updateScore("Spain", "Brazil", 3, 2);
