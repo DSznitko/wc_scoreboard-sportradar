@@ -27,9 +27,13 @@ export class ScoreBoard {
   ): void {
     if (homeScore < 0 || awayScore < 0)
       throw new Error("Scores cannot be negative");
-    this.matches[0].homeTeam = homeTeam;
-    this.matches[0].awayTeam = awayTeam;
-    this.matches[0].homeScore = homeScore;
-    this.matches[0].awayScore = awayScore;
+
+    const currentMatch = this.matches.find(
+      (m) => m.homeTeam === homeTeam && m.awayTeam === awayTeam
+    );
+    if (!currentMatch) throw new Error("Match not found");
+
+    currentMatch.homeScore = homeScore;
+    currentMatch.awayScore = awayScore;
   }
 }
