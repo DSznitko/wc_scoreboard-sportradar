@@ -36,4 +36,11 @@ export class ScoreBoard {
     currentMatch.homeScore = homeScore;
     currentMatch.awayScore = awayScore;
   }
+
+  finishMatch(homeTeam: string, awayTeam: string): void {
+    const matchIndexToRemove = this.matches.findIndex(
+      (match) => match.homeTeam === homeTeam && match.awayTeam === awayTeam
+    );
+    this.matches.splice(matchIndexToRemove, 1);
+  }
 }
