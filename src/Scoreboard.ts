@@ -6,12 +6,7 @@ export class ScoreBoard {
     awayScore: number;
   }[] = [];
 
-  startMatch(
-    homeTeam: string,
-    awayTeam: string,
-    homeScore: number,
-    awayScore: number
-  ): void {
+  startMatch(homeTeam: string, awayTeam: string): void {
     if (!homeTeam || !awayTeam)
       throw new Error("each Team can't be an empty string");
 
@@ -19,8 +14,8 @@ export class ScoreBoard {
     this.matches.push({
       homeTeam,
       awayTeam,
-      homeScore: homeScore,
-      awayScore: awayScore,
+      homeScore: 0,
+      awayScore: 0,
     });
   }
 }
