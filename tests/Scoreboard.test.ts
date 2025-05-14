@@ -18,7 +18,6 @@ describe("ScoreBoard", () => {
 
   it("should update the score of a match", () => {
     scoreboard.startMatch("Mexico", "Canada");
-
     scoreboard.updateScore("Mexico", "Canada", 2, 1);
 
     expect(scoreboard.matches[0].homeScore).toBe(2);

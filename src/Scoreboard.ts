@@ -18,4 +18,16 @@ export class ScoreBoard {
       awayScore: 0,
     });
   }
+
+  updateScore(
+    homeTeam: string,
+    awayTeam: string,
+    homeScore: number,
+    awayScore: number
+  ): void {
+    this.matches[0].homeTeam = homeTeam;
+    this.matches[0].awayTeam = awayTeam;
+    this.matches[0].homeScore = homeScore;
+    this.matches[0].awayScore = awayScore;
+  }
 }
