@@ -31,4 +31,24 @@ describe("ScoreBoard", () => {
 
     expect(scoreboard.matches).toHaveLength(0);
   });
+
+  it("should return summary ordered by total score", () => {
+    scoreboard.startMatch("Mexico", "Canada");
+    scoreboard.updateScore("Mexico", "Canada", 2, 1);
+
+    scoreboard.startMatch("Spain", "Brazil");
+    scoreboard.updateScore("Spain", "Brazil", 3, 2);
+
+    scoreboard.startMatch("Germany", "France");
+    scoreboard.updateScore("Germany", "France", 1, 1);
+
+    const summary = scoreboard.getSummary();
+
+    expect(summary[0].homeTeam).toBe("Spain");
+    expect(summary[0].awayTeam).toBe("Brazil");
+    expect(summary[1].homeTeam).toBe("Mexico");
+    expect(summary[1].awayTeam).toBe("Canada");
+    expect(summary[2].homeTeam).toBe("Germany");
+    expect(summary[2].awayTeam).toBe("France");
+  });
 });
