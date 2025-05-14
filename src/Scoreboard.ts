@@ -25,6 +25,8 @@ export class ScoreBoard {
     homeScore: number,
     awayScore: number
   ): void {
+    if (homeScore < 0 || awayScore < 0)
+      throw new Error("Scores cannot be negative");
     this.matches[0].homeTeam = homeTeam;
     this.matches[0].awayTeam = awayTeam;
     this.matches[0].homeScore = homeScore;
