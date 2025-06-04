@@ -57,7 +57,7 @@ describe("ScoreBoard", () => {
     it("should finish the match and remove it from scoreboard", () => {
       scoreboard.startMatch("Mexico", "Canada");
 
-      scoreboard.finishMatch("Norway", "Canada");
+      scoreboard.finishMatch("Mexico", "Canada");
 
       expect(scoreboard.matches).toHaveLength(0);
     });
