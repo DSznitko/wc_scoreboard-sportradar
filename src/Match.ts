@@ -21,7 +21,7 @@ export class Match {
 
   updateScore(homeScore: number, awayScore: number): void {
     if (homeScore < 0 || awayScore < 0) {
-      throw new Error("Scores cannot be negative");
+      throw new Error("Score can't be negative");
     }
     this._homeScore = homeScore;
     this._awayScore = awayScore;

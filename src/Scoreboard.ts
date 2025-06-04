@@ -1,26 +1,18 @@
+import { Match } from "./Match";
 export class ScoreBoard {
-  matches: {
-    homeTeam: string;
-    awayTeam: string;
-    homeScore: number;
-    awayScore: number;
-    matchStartTime: number;
-  }[] = [];
-
-  startMatchCounter = 0;
+  public matches: Match[] = [];
+  private matchCounter = 0;
 
   startMatch(homeTeam: string, awayTeam: string): void {
-    if (!homeTeam || !awayTeam)
-      throw new Error("each Team can't be an empty string");
+    if (!homeTeam || !awayTeam) {
+      throw new Error("Each team name must be provided");
+    }
+    if (homeTeam === awayTeam) {
+      throw new Error("Teams must be different");
+    }
 
-    if (homeTeam === awayTeam) throw new Error("Teams must be different");
-    this.matches.push({
-      homeTeam,
-      awayTeam,
-      homeScore: 0,
-      awayScore: 0,
-      matchStartTime: this.startMatchCounter++,
-    });
+    const newMatch = new Match(homeTeam, awayTeam, 0, 0, this.matchCounter++);
+    this.matches.push(newMatch);
   }
 
   updateScore(
@@ -29,33 +21,32 @@ export class ScoreBoard {
     homeScore: number,
     awayScore: number
   ): void {
-    if (homeScore < 0 || awayScore < 0)
-      throw new Error("Score can't be negative");
-
-    const currentMatch = this.matches.find(
-      (m) => m.homeTeam === homeTeam && m.awayTeam === awayTeam
-    );
-    if (!currentMatch) throw new Error("Match not found");
-
-    currentMatch.homeScore = homeScore;
-    currentMatch.awayScore = awayScore;
+    const match = this.findMatch(homeTeam, awayTeam);
+    match.updateScore(homeScore, awayScore);
   }
 
   finishMatch(homeTeam: string, awayTeam: string): void {
-    const matchIndexToRemove = this.matches.findIndex(
-      (match) => match.homeTeam === homeTeam && match.awayTeam === awayTeam
-    );
-    if (matchIndexToRemove === -1) throw new Error("Match not found.");
-    this.matches.splice(matchIndexToRemove, 1);
+    const index = this.matches.findIndex((m) => m.isMatch(homeTeam, awayTeam));
+    if (index === -1) {
+      throw new Error("Match not found");
+    }
+    this.matches.splice(index, 1);
   }
 
-  getSummary() {
+  getSummary(): Match[] {
     return [...this.matches].sort((a, b) => {
-      const totalA = a.homeScore + a.awayScore;
-      const totalB = b.homeScore + b.awayScore;
-
-      if (totalA !== totalB) return totalB - totalA;
-      return b.matchStartTime - a.matchStartTime;
+      if (b.totalScore !== a.totalScore) {
+        return b.totalScore - a.totalScore;
+      }
+      return b.startedAt - a.startedAt;
     });
+  }
+
+  private findMatch(homeTeam: string, awayTeam: string): Match {
+    const match = this.matches.find((m) => m.isMatch(homeTeam, awayTeam));
+    if (!match) {
+      throw new Error("Match not found");
+    }
+    return match;
   }
 }
