@@ -30,7 +30,7 @@ export class ScoreBoard {
     awayScore: number
   ): void {
     if (homeScore < 0 || awayScore < 0)
-      throw new Error("Scores cannot be negative");
+      throw new Error("Score can't be negative");
 
     const currentMatch = this.matches.find(
       (m) => m.homeTeam === homeTeam && m.awayTeam === awayTeam
