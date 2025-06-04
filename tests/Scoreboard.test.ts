@@ -29,12 +29,20 @@ describe("ScoreBoard", () => {
   });
 
   // Update match score test \\
-  it("should update the score of a match", () => {
-    scoreboard.startMatch("Mexico", "Canada");
-    scoreboard.updateScore("Mexico", "Canada", 2, 1);
+  describe("updateScore", () => {
+    it("should update the score of a match", () => {
+      scoreboard.startMatch("Mexico", "Canada");
+      scoreboard.updateScore("X", "Y", 2, 1);
 
-    expect(scoreboard.matches[0].homeScore).toBe(2);
-    expect(scoreboard.matches[0].awayScore).toBe(1);
+      expect(scoreboard.matches[0].homeScore).toBe(2);
+      expect(scoreboard.matches[0].awayScore).toBe(1);
+    });
+
+    it("should throw error when updating non-existing match", () => {
+      expect(() => scoreboard.updateScore("X", "Y", 1, 1)).toThrow(
+        "Match not found"
+      );
+    });
   });
 
   // Finish match and remove it from scoreboard array test \\
