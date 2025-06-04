@@ -53,12 +53,18 @@ describe("ScoreBoard", () => {
   });
 
   // Finish match and remove it from scoreboard array test \\
-  it("should finish the match and remove it from scoreboard", () => {
-    scoreboard.startMatch("Mexico", "Canada");
+  describe("finishMatch", () => {
+    it("should finish the match and remove it from scoreboard", () => {
+      scoreboard.startMatch("Mexico", "Canada");
 
-    scoreboard.finishMatch("Mexico", "Canada");
+      scoreboard.finishMatch("Norway", "Canada");
 
-    expect(scoreboard.matches).toHaveLength(0);
+      expect(scoreboard.matches).toHaveLength(0);
+    });
+
+    it("should throw error when finishing non-existing match", () => {
+      expect(() => scoreboard.finishMatch("A", "B")).toThrow("Match not found");
+    });
   });
 
   // Summary of all matches and sort them in proper way test \\
