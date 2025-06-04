@@ -32,7 +32,7 @@ describe("ScoreBoard", () => {
   describe("updateScore", () => {
     it("should update the score of a match", () => {
       scoreboard.startMatch("Mexico", "Canada");
-      scoreboard.updateScore("X", "Y", 2, 1);
+      scoreboard.updateScore("X", "Y", -2, 1);
 
       expect(scoreboard.matches[0].homeScore).toBe(2);
       expect(scoreboard.matches[0].awayScore).toBe(1);
@@ -41,6 +41,13 @@ describe("ScoreBoard", () => {
     it("should throw error when updating non-existing match", () => {
       expect(() => scoreboard.updateScore("X", "Y", 1, 1)).toThrow(
         "Match not found"
+      );
+    });
+
+    it("should throw error on negative scores", () => {
+      scoreboard.startMatch("Mexico", "Canada");
+      expect(() => scoreboard.updateScore("Mexico", "Canada", -1, 0)).toThrow(
+        "Score can't be negative"
       );
     });
   });
