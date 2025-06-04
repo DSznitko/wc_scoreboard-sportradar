@@ -10,7 +10,7 @@ describe("ScoreBoard", () => {
   // Start match test \\
   describe("startMatch", () => {
     it("should start a new match with initial score 0-0", () => {
-      scoreboard.startMatch("Mexico", "Mexico");
+      scoreboard.startMatch("Mexico", "Canada");
 
       expect(scoreboard.matches[0].homeTeam).toBe("Mexico");
       expect(scoreboard.matches[0].awayTeam).toBe("Canada");
