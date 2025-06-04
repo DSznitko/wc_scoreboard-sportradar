@@ -10,9 +10,9 @@ describe("ScoreBoard", () => {
   // Start match test \\
   describe("startMatch", () => {
     it("should start a new match with initial score 0-0", () => {
-      scoreboard.startMatch("Mexico", "Canada");
+      scoreboard.startMatch("Mexico", "Mexico");
 
-      expect(scoreboard.matches[0].homeTeam).toBe("");
+      expect(scoreboard.matches[0].homeTeam).toBe("Mexico");
       expect(scoreboard.matches[0].awayTeam).toBe("Canada");
       expect(scoreboard.matches[0].homeScore).toBe(0);
       expect(scoreboard.matches[0].awayScore).toBe(0);
@@ -21,6 +21,10 @@ describe("ScoreBoard", () => {
     it("should throw error if home or away team is empty", () => {
       expect(() => scoreboard.startMatch("", "Canada")).toThrow();
       expect(() => scoreboard.startMatch("Mexico", "")).toThrow();
+    });
+
+    it("should throw error if home and away teams are the same", () => {
+      expect(() => scoreboard.startMatch("Mexico", "Mexico")).toThrow();
     });
   });
 
